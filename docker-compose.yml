@@ -1,0 +1,21 @@
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    container_name: slm_click_house
+    ports:
+      - "8123:8123"
+      - "9230:9000"
+      - "9009:9009"
+    volumes:
+      - ./db:/var/lib/clickhouse
+    environment:
+      - CLICKHOUSE_DB=slm
+      - CLICKHOUSE_USER=clickhouse
+      - CLICKHOUSE_PASSWORD=clickhouse_password
+    networks:
+      - slm
+
+networks:
+  slm:
+    driver: bridge
